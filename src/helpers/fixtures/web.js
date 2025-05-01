@@ -1,7 +1,6 @@
 import { test as base } from '@playwright/test';
 import { InitializingPages } from '../../../src/pages/indexPages'
-import { RandomUserBuilder } from '../builders/user.builder';
-import { ArticleBuilder } from '../builders/article.builder';
+import { RandomUserBuilder, ArticleBuilder } from '../builders/indexBuilders'
 
 export const test = base.extend({
   initializingPages: async ({ page }, use) => {
