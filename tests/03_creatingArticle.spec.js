@@ -4,11 +4,12 @@ test.describe('Создание и редактирование статьи', (
 
     test.beforeEach(async ({ initializingPages }) => {
         await initializingPages.mainPage.openMainPage()
-        await initializingPages.headerPage.clickSignInButton()
+        await initializingPages.headerPage.clickLoginButton()
         await initializingPages.authorizationPage.authorizationUser(process.env.TEST_USER_EMAIL, process.env.TEST_USER_PASSWORD)
       });
 
     test.afterEach(async ({ initializingPages, page }) => {
+        //TODO: переписать на API
         page.on('dialog', async (dialog) => {
             await dialog.accept();
         });
@@ -34,7 +35,7 @@ test.describe('Удаление статьи', () => {
 
     test.beforeEach(async ({ initializingPages }) => {
         await initializingPages.mainPage.openMainPage()
-        await initializingPages.headerPage.clickSignInButton()
+        await initializingPages.headerPage.clickLoginButton()
         await initializingPages.authorizationPage.authorizationUser(process.env.TEST_USER_EMAIL, process.env.TEST_USER_PASSWORD)
       });
 
@@ -48,7 +49,6 @@ test.describe('Удаление статьи', () => {
         //Проверка используется в качестве дополнительного ожидания. Без переход на страницу профиля осуществляется раньше, ченм нужно для теста
         await expect(initializingPages.headerPage.homeButton).toHaveAttribute('aria-current', 'page');
         await initializingPages.headerPage.clickProfileButton()
-        await initializingPages.headerPage.clickProfileInDropdownButton()
         await expect(initializingPages.profilePage.textAboutAbsenceOfArticles).toBeVisible()
         await expect(initializingPages.profilePage.textAboutAbsenceOfArticles).toHaveText("alrumbl4 doesn't have articles.")
     });

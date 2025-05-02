@@ -7,15 +7,16 @@ export class HeaderPage {
 
         //Button
         this.homeButton = page.locator('a[href="#/"]').nth(1)
-        this.signInButton = page.locator('a[href="#/login"]');
+        this.loginButton = page.locator('a[href="#/login"]');
         this.signUpButton = page.locator('a[href="#/register"]');
         this.createNewArticleButton = page.locator('a[href="#/editor"]');
         this.profileButton = page.locator('li>div[class="nav-link dropdown-toggle cursor-pointer"]');
         this.profileInDropdownButton = page.getByRole('link', { name: 'Profile' })
+        this.logoutButton = page.locator('div>a[href="#/"]').nth(1)
     }
 
-    async clickSignInButton() {
-        await this.signInButton.click()
+    async clickLoginButton() {
+        await this.loginButton.click()
     }
 
     async clickSighUpButton() {
@@ -28,9 +29,11 @@ export class HeaderPage {
 
     async clickProfileButton() {
         await this.profileButton.click()
+        await this.profileInDropdownButton.click()
     }
 
-    async clickProfileInDropdownButton() {
-        await this.profileInDropdownButton.click()
+    async clickLogoutButton() {
+        await this.profileButton.click()
+        await this.logoutButton.click()
     }
 }
